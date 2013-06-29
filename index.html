@@ -5,15 +5,19 @@
 <script src="phonegap.js"></script>
 <script src="barcodescanner.js"></script>
 <script type="text/javascript" >
+function quitapp() {
+	navigator.app.exitApp();
+	}
 function scancode() {
 	var scanner = cordova.require("cordova/plugin/BarcodeScanner");
 
    scanner.scan(
       function (result) {
-          alert("We got a barcode\n" +
-                "Result: " + result.text + "\n" +
-                "Format: " + result.format + "\n" +
-                "Cancelled: " + result.cancelled);
+      	msgText = result.text;
+      	msgFormat = result.format;
+      	msgCancel = result.cancelled;
+			document.getElementById("msg").innerHTML = "MSG : " + msgText;
+			document.getElementById("format").innerHTML = "Format : " + msgFormat
       }, 
       function (error) {
           alert("Scanning failed: " + error);
@@ -24,6 +28,10 @@ function scancode() {
 </script>
 </head>
 <body onload="scancode()">
-<h1>BARCODE SCANNER START</h1>
+<h1>BARCODE SCANNER</h1>
+<div id="msg"></div>
+<div id="format"></div>
+<input type="button" value="Scan Again" onclick="scancode()" />
+<input type="button" value="QUIT" onclick="quitapp()" />
 </body>
 </html>
