@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>BarCode Reader</title>
+<script src="phonegap.js"></script>
+<script src="barcodescanner.js"></script>
+<script type="text/javascript" >
+function quitapp() {
+	navigator.app.exitApp();
+	}
+function scancode() {
+	var scanner = cordova.require("cordova/plugin/BarcodeScanner");
+
+   scanner.scan(
+      function (result) {
+      	msgText = result.text;
+      	msgFormat = result.format;
+      	msgCancel = result.cancelled;
+			document.getElementById("msg").innerHTML = "MSG : " + msgText;
+			document.getElementById("format").innerHTML = "Format : " + msgFormat
+      }, 
+      function (error) {
+          alert("Scanning failed: " + error);
+      }
+   );
+	}
+
+</script>
+</head>
+<body onload="scancode()">
+<h1>BARCODE SCANNER</h1>
+<div id="msg"></div>
+<div id="format"></div>
+<input type="button" value="Scan Again" onclick="scancode()" />
+<input type="button" value="QUIT" onclick="quitapp()" />
+</body>
+</html>
