@@ -16,21 +16,21 @@ function scancode() {
      var msgText1 = result.text;
      var msgFormat1 = result.format;
      var msgCancel1 = result.cancelled;
-//			document.getElementById("msg").innerHTML = "MSG : " + msgText;
+     document.getElementById("msg1").innerHTML = "MSG1 : " + msgText;
 //			document.getElementById("format").innerHTML = "Format : " + msgFormat
       }, 
       function (error) {
           alert("Scanning failed1: " + error);
       }
    );
-alert(msgText1);
+
 alert("SCAN REPLACEMENT");
    scanner.scan(
       function (result) {
      var msgText2 = result.text;
      var msgFormat2 = result.format;
      var msgCancel2 = result.cancelled;
-//			document.getElementById("msg").innerHTML = "MSG : " + msgText;
+     document.getElementById("msg").innerHTML = "MSG2 : " + msgText;
 //			document.getElementById("format").innerHTML = "Format : " + msgFormat
       }, 
       function (error) {
@@ -46,9 +46,9 @@ alert(msgText2);
 </script>
 </head>
 <body onload="scancode()">
-<h1>BARCODE SCANNER</h1>
-<div id="msg"></div>
-<div id="format"></div>
+<h1>BARCODE SCANNER TEST 009</h1>
+<div id="msg1"></div><br/>
+<div id="msg2"></div>
 <input type="button" value="Scan Again" onclick="scancode()" />
 <input type="button" value="QUIT" onclick="quitapp()" />
 </body>
